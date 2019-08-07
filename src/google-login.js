@@ -91,7 +91,10 @@ class GoogleLogin extends Component {
       const options = {
         prompt
       }
-      onRequest()
+      const goAhead = onRequest()
+      if (!goAhead) {
+        return
+      }
       if (responseType === 'code') {
         auth2.grantOfflineAccess(options).then(res => onSuccess(res), err => onFailure(err))
       } else {
